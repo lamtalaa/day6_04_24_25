@@ -1,0 +1,54 @@
+Interview Questions:
+
+1. What is Dependency injection
+Dependency injection solves the problem of creating a loop by creating a project of each class.
+If your class is dependent on any other class then pass object of that class from outside the class. Don't create object inside the class  
+3 ways to do this:
+1. Initializer dependency // constructor dependency 
+2. Function parameter dependency // method dependency
+3. Instance variable dependency // property dependency 
+
+The advantage of using dependency injection:
+Dependency injection makes code more modular, testable, and flexible by decoupling components from their concrete dependencies.
+
+2. When to use which dependency
+Use initializer injection for required dependencies, instance variable injection for optional or late-bound ones, and function parameter injection for short-term, task-specific needs.
+
+3. What is dependency inversion:
+Dependency Inversion: pass abstract dependencies of type protocol instead of concrete dependencies
+The advantage of using dependency inversion is that it reduces coupling between high-level and low-level components by relying on abstractions, making the system more flexible and easier to maintain or test
+
+Example:
+
+protocol C {
+    func doSomething()
+}
+
+class B: C {
+    func doSomething() {
+        print("B is doing something")
+    }
+}
+
+class A {
+    let dependency: C
+
+    init(dependency: C) {
+        self.dependency = dependency
+    }
+
+    func performTask() {
+        dependency.doSomething()
+    }
+}
+
+let b = B()
+let a = A(dependency: b)
+a.performTask()
+
+5. What are the mandatory data source methods
+tableView numberOfRowsInSection and tableView cellForRowAt indexPath
+
+6. What is advantage of using dequeueReusableCell withIdentifier
+Using dequeueReusableCell(withIdentifier:) improves performance and memory usage by reusing existing table view cells instead of creating new ones every time a cell appears. This makes scrolling smoother and avoids unnecessary object creation.
+
